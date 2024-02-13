@@ -12,6 +12,7 @@
 
     /// <summary>
     /// The api data type, supports {{entity.property}} e.g. {{address.FullAddress}}
+    /// Also you can pass other columns value to this api by @, e.g. internet.email(@FirstName, @LastName)
     /// </summary>
     Bogus,
 
