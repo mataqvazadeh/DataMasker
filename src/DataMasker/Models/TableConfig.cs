@@ -47,5 +47,16 @@ namespace DataMasker.Models
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public string Schema { get; set; }
 
+        /// <summary>
+        /// This property allows for the selective masking of specific rows, 
+        /// encapsulating the logic behind applying a masking condition.
+        /// </summary>
+        /// <value>
+        /// The SQL WHERE condition
+        /// </value>
+        /// <remarks>Defaults to null</remarks>
+        [DefaultValue(null)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public string Condition { get; set; }
     }
 }

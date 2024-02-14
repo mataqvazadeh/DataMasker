@@ -161,13 +161,27 @@ namespace DataMasker.DataSources
         private string BuildSelectSql(
             TableConfig tableConfig)
         {
-            return $"SELECT  {tableConfig.Columns.GetSelectColumns(tableConfig.PrimaryKeyColumn)} FROM [{tableConfig.Schema}].[{tableConfig.Name}]";
+            var query = $"SELECT {tableConfig.Columns.GetSelectColumns(tableConfig.PrimaryKeyColumn)} FROM [{tableConfig.Schema}].[{tableConfig.Name}]";
+
+            if (!string.IsNullOrEmpty(tableConfig.Condition?.Trim()))
+            {
+                query += $" WHERE {tableConfig.Condition}";
+            }
+
+            return query;
         }
 
         private string BuildCountSql(
             TableConfig tableConfig)
         {
-            return $"SELECT COUNT(*) FROM [{tableConfig.Schema}].[{tableConfig.Name}]";
+            string query = $"SELECT COUNT(*) FROM [{tableConfig.Schema}].[{tableConfig.Name}]";
+
+            if (!string.IsNullOrEmpty(tableConfig.Condition?.Trim()))
+            {
+                query += $" WHERE {tableConfig.Condition}";
+            }
+            
+            return query;
         }
 
     }
